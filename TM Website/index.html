@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christ Embassy Ottawa Teens</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===== BASE ===== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; scroll-behavior: smooth; }
+body { background:#f3f7fc; color:#222; overflow-x:hidden; }
+a { text-decoration:none; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top:15px; left:50%; transform:translateX(-50%);
+  width:70%; background:rgba(255,255,255,0.95); backdrop-filter:blur(12px);
+  padding:12px 25px; border-radius:15px;
+  display:flex; justify-content:space-between; align-items:center; z-index:999;
+  box-shadow:0 8px 30px rgba(0,0,0,0.2);
+  transition:0.3s;
+}
+nav:hover { transform:translateX(-50%) scale(1.02); }
+nav h2 { font-size:1.4rem; font-weight:800; color:#2563eb; }
+
+nav ul { display:flex; gap:20px; list-style:none; }
+
+/* NAV LINKS */
+nav ul li a { 
+  font-weight:600; 
+  color:#222; 
+  transition:0.3s; 
+  font-size:1rem;
+}
+nav ul li a:hover { color:#ffdf4d; }
+
+/* ===== MOBILE NAV ===== */
+.menu-btn {
+  display:none;
+  font-size:1.8rem;
+  cursor:pointer;
+  color:#2563eb;
+  font-weight:800;
+}
+
+@media(max-width:850px){
+  nav {
+    width:90%;
+    padding:10px 20px;
+  }
+
+  nav ul {
+    position:absolute;
+    top:70px;
+    left:0;
+    width:100%;
+    background:white;
+    flex-direction:column;
+    text-align:center;
+    padding:20px 0;
+    gap:18px;
+    border-radius:10px;
+    display:none;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  nav ul.show { display:block; }
+
+  .menu-btn { display:block; }
+}
+
+/* ===== HERO ===== */
+.hero { height:100vh; position:relative; overflow:hidden; }
+
+.slideshow { position:absolute; top:0; left:0; width:100%; height:100%; }
+.slide {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background-size:cover; background-position:center;
+  opacity:0; animation:fade 16s infinite;
+}
+.slide:nth-child(1){animation-delay:0s;}
+.slide:nth-child(2){animation-delay:4s;}
+.slide:nth-child(3){animation-delay:8s;}
+.slide:nth-child(4){animation-delay:12s;}
+
+@keyframes fade {
+  0% {opacity:0;} 10%{opacity:1;} 25%{opacity:1;} 35%{opacity:0;} 100%{opacity:0;}
+}
+
+.overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.35); }
+
+.hero-content {
+  position:relative; z-index:3; height:100%;
+  display:flex; justify-content:center; align-items:center;
+  text-align:center; flex-direction:column;
+  padding:0 20px;
+}
+
+.welcome { font-size:3rem; color:#ffdf4d; margin-bottom:8px; }
+.church { font-size:4rem; color:#fff; margin-bottom:12px; }
+.teens { font-size:5rem; color:#ff7f50; }
+
+@media(max-width:700px){
+  .welcome { font-size:2rem; }
+  .church { font-size:2.6rem; }
+  .teens { font-size:3rem; }
+}
+
+/* ===== SECTIONS ===== */
+section { min-height:100vh; padding:70px 6%; text-align:center; }
+section h2 {
+  font-size:2.4rem; margin-bottom:40px; color:#2563eb;
+  text-transform:uppercase;
+}
+
+/* ===== EVENTS / CARDS ===== */
+.events {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:30px;
+}
+
+.event-card {
+  width:320px; background:linear-gradient(135deg,#bae6fd,#60a5fa);
+  padding:25px; border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  transition:0.4s; text-align:center;
+  cursor:pointer;
+}
+.event-card:hover {
+  transform:translateY(-8px) scale(1.05);
+  box-shadow:0 15px 40px rgba(0,0,0,0.3);
+  background:linear-gradient(135deg,#ffdf4d,#ff7f50);
+}
+
+.event-img {
+  width:100%; height:auto;
+  border-radius:15px; margin-bottom:15px;
+}
+
+/* FADE IN */
+.fade-in { opacity:0; transform:translateY(30px); transition:1s ease-out; }
+.fade-in.show { opacity:1; transform:translateY(0); }
+
+/* ===== HIGHLIGHTS BG ===== */
+#highlights {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('images/img1.png');
+  background-size:cover;
+  background-position:center;
+  color:white;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background:#1e3a8a; color:white;
+  padding:90px 10px; text-align:center; font-size:1.1rem;
+}
+footer h2 { font-size:2rem; font-weight:800; margin-bottom:20px; }
+footer .info { margin-top:10px; line-height:1.6; color:#e0eaff; }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <h2>CE Ottawa Teens</h2>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+  <ul id="nav-links">
+    <li><a href="#events">Events</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="teevo/November25.pdf" download="november25.pdf">Download TeeVo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="slideshow">
+    <div class="slide" style="background-image:url('images/img1.png');"></div>
+    <div class="slide" style="background-image:url('images/img2.png');"></div>
+    <div class="slide" style="background-image:url('images/cday.jpg');"></div>
+    <div class="slide" style="background-image:url('images/jesus.jpg');"></div>
+  </div>
+
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="welcome">Welcome to</h1>
+    <h1 class="church">Christ Embassy Ottawa</h1>
+    <h1 class="teens">Teens</h1>
+  </div>
+</header>
+
+<!-- EVENTS -->
+<section id="events">
+  <h2>Upcoming Events</h2>
+  <div class="events fade-in">
+    <div class="event-card">
+      <img src="images/event.png" class="event-img" alt="Teen Prayer Summit">
+      <h3>Youth Event concluded</h3>
+      <p>Faith • Fire • Fellowship</p>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section id="highlights">
+  <h2>Highlights</h2>
+  <div class="events fade-in">
+    <div class="event-card">
+      <img src="images/h1.jpg" class="event-img" alt="">
+      <h3>Canada Day 2025</h3>
+      <p>Spreading TeeVo to Teenagers.</p>
+    </div>
+
+    <div class="event-card">
+      <img src="images/h2.jpg" class="event-img" alt="">
+      <h3>Foodies</h3>
+      <p>We love the Word and Food</p>
+    </div>
+
+    <div class="event-card">
+      <img src="images/brea.png" class="event-img" alt="">
+      <h3>Level Up Crusade</h3>
+      <p>We listened attentively to the Word</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <h2>Christ Embassy Ottawa Teens</h2>
+  <p class="info">
+    2080 Walkley Road, Ottawa, ON<br>
+    Email: teensottawazone@gmail.com
+  </p>
+  <p class="info" style="margin-top:25px; font-size:0.9rem; color:#cfdcff;">© 2025 All Rights Reserved</p>
+</footer>
+
+<!-- ===== JS ===== -->
+<script>
+// fade-in animations
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+},{ threshold:0.2 });
+
+faders.forEach(f => observer.observe(f));
+
+// mobile nav toggle
+function toggleMenu(){
+  document.getElementById("nav-links").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
